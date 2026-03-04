@@ -1,7 +1,9 @@
 const select = document.querySelector('#uf')
-const btnBuscarMortes = document.querySelector('#btnBuscarMortes')
+const btnBuscarMortesCasos = document.querySelector('#btnBuscarMortesCasos')
 const resultadoStatus = document.querySelector('#status')
 const resultado = document.querySelector('#resultado')
+const resultadoMortes =document.querySelector('#resultadoMortes')
+const resultadoCasos =document.querySelector('#resultadoCasos')
 
 
 verificarStatus()
@@ -25,16 +27,26 @@ function verificarStatus() {
 
 }
 
-function verificarMortos(valorSelecionado) {
+function verificarMortosCasos(valorSelecionado) {
 
     fetch(`https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/${valorSelecionado}`, {
     })
         .then(response => response.json())
         .then(dados => {
             const mortos = dados.deaths
-            resultado.innerHTML = `${mortos}`
+            resultadoMortes.innerHTML = `Mortes: ${mortos}`
         })
         .catch(err => console.error(err));
+    
+    fetch(`https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/${valorSelecionado}`, {
+    })
+        .then(response => response.json())
+        .then(dados => {
+            const casos = dados.cases
+            resultadoCasos.innerHTML = `Casos: ${casos}`
+        })
+        .catch(err => console.error(err));
+    
 }
 
 function validarPesquisa() {
@@ -49,8 +61,8 @@ function validarPesquisa() {
         resultado.innerHTML = '';
     }
 
-    verificarMortos(valorSelecionado)
+    verificarMortosCasos(valorSelecionado)
 
 }
 
-btnBuscarMortes.addEventListener('click', () => validarPesquisa())
+btnBuscarMortesCasos.addEventListener('click', () => validarPesquisa())
