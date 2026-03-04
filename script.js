@@ -1,6 +1,8 @@
 const select = document.querySelector('#uf')
-const btnBuscar = document.querySelector('#btnBuscar')
+const btnBuscarMortes = document.querySelector('#btnBuscarMortes')
 const resultadoStatus = document.querySelector('#status')
+const resultado = document.querySelector('#resultado')
+
 
 verificarStatus()
 function verificarStatus() {
@@ -23,7 +25,32 @@ function verificarStatus() {
 
 }
 
-btnBuscar.addEventListener('click', () => {
-    const valorSelecionado = select.value
-    console.log(valorSelecionado)
-})
+function verificarMortos(valorSelecionado) {
+
+    fetch(`https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/${valorSelecionado}`, {
+    })
+        .then(response => response.json())
+        .then(dados => {
+            const mortos = dados.deaths
+            resultado.innerHTML = `${mortos}`
+        })
+        .catch(err => console.error(err));
+}
+
+function validarPesquisa() {
+    let valorSelecionado = select.value;
+
+    if (valorSelecionado == '') {
+        resultado.innerHTML = 'insira um valor valido'
+        return;
+    }
+    if (valorSelecionado != '') {
+        valorSelecionado = select.value;
+        resultado.innerHTML = '';
+    }
+
+    verificarMortos(valorSelecionado)
+
+}
+
+btnBuscarMortes.addEventListener('click', () => validarPesquisa())
