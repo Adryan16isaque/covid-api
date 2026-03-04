@@ -9,7 +9,14 @@ function verificarStatus() {
         .then(response => response.json())
         .then(dados => {
             let status = dados.status
-            status == 'ok' ? resultadoStatus.innerHTML = `ONLINE` : resultadoStatus.innerHTML = `OFFLINE`
+            if (status == 'ok') {
+                resultadoStatus.innerHTML = `ONLINE`
+                resultadoStatus.classList.add('estilizacaoStatusPositivo')
+            }
+            else {
+                resultadoStatus.innerHTML = `OFFLINE`
+                resultadoStatus.classList.add('estilizacaoStatusNegativo')
+            }
         })
         .catch(err => console.error(err));
 
