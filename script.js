@@ -4,7 +4,8 @@ const resultadoStatus = document.querySelector('#status')
 const resultado = document.querySelector('#resultado')
 const resultadoMortes = document.querySelector('#resultadoMortes')
 const resultadoCasos = document.querySelector('#resultadoCasos')
-
+const ctx = document.getElementById('myChart');
+const ctx2 = document.getElementById('myChart2');
 
 
 verificarStatus()
@@ -29,58 +30,55 @@ function verificarStatus() {
 }
 
 function verificarMortosCasos(valorSelecionado) {
-
     fetch(`https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/${valorSelecionado}`, {
     })
-        .then(response => response.json())
-        .then(dados => {
-            const mortos = dados.deaths
-            const casos = dados.cases
-            resultadoMortes.innerHTML = `Mortes: ${mortos}`
-            resultadoCasos.innerHTML = `Casos: ${casos}`
+    .then(response => response.json())
+    .then(dados => {
+        const mortos = dados.deaths
+        const casos = dados.cases
+        resultadoMortes.innerHTML = `Mortes: ${mortos}`
+        resultadoCasos.innerHTML = `Casos: ${casos}`
 
-            const ctx = document.getElementById('myChart');
-            
-
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [`Casos de Covid em ${valorSelecionado}`],
-                    datasets: [{
-                        label: ['Mortes'],
-                        data: [mortos],
-                        backgroundColor: 'rgba(255, 0, 0, 0.6)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Casos',
-                        data: [casos],
-                        backgroundColor: 'rgba(0, 158, 255, 0.6)',
-                        borderWidth: 1
-                    }
-                    ]
+        tabela = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [`Casos de Covid em ${valorSelecionado}`],
+                datasets: [{
+                    label: ['Mortes'],
+                    data: [mortos],
+                    backgroundColor: 'rgba(255, 0, 0, 0.6)',
+                    borderWidth: 1
                 },
-                options: {
-                    title: {
-                        display: true,
-                        fontSize: 20,
-                        text: 'TABELA DE MORTES E CASOS POR ESTADOS'
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
+                {
+                    label: 'Casos',
+                    data: [casos],
+                    backgroundColor: 'rgba(0, 158, 255, 0.6)',
+                    borderWidth: 1
                 }
-            });
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                fontSize: 20,
+                text: 'TABELA DE MORTES E CASOS POR ESTADOS',
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    })
 
-        })
-        .catch(err => console.error(err));
+})
+.catch(err => console.error(err));
 
 
 }
 
 function validarPesquisa() {
+    
     let valorSelecionado = select.value;
 
     if (valorSelecionado == '') {
@@ -91,7 +89,7 @@ function validarPesquisa() {
         valorSelecionado = select.value;
         resultado.innerHTML = '';
     }
-
+    
     verificarMortosCasos(valorSelecionado)
 
 }
