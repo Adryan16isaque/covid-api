@@ -32,29 +32,36 @@ function verificarStatus() {
 function verificarMortosCasos(valorSelecionado) {
     fetch(`https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/${valorSelecionado}`, {
     })
-    .then(response => response.json())
-    .then(dados => {
-        const mortos = dados.deaths
-        const casos = dados.cases
-        resultadoMortes.innerHTML = `Mortes: ${mortos}`
-        resultadoCasos.innerHTML = `Casos: ${casos}`
+        .then(response => response.json())
+        .then(dados => {
+            const mortos = dados.deaths
+            const casos = dados.cases
+            resultadoMortes.innerHTML = `Mortes: ${mortos}`
+            resultadoCasos.innerHTML = `Casos: ${casos}`
+            const estado = valorSelecionado
+            criarTabela(estado,mortos,casos)
+        })
+        .catch(err => console.error(err));
+}
 
-        tabela = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: [`Casos de Covid em ${valorSelecionado}`],
-                datasets: [{
-                    label: ['Mortes'],
-                    data: [mortos],
-                    backgroundColor: 'rgba(255, 0, 0, 0.6)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Casos',
-                    data: [casos],
-                    backgroundColor: 'rgba(0, 158, 255, 0.6)',
-                    borderWidth: 1
-                }
+
+function criarTabela(valorSelecionado,mortos,casos) {
+    tabela = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [`Casos de Covid em ${valorSelecionado}`],
+            datasets: [{
+                label: ['Mortes'],
+                data: [mortos],
+                backgroundColor: 'rgba(255, 0, 0, 0.6)',
+                borderWidth: 1
+            },
+            {
+                label: 'Casos',
+                data: [casos],
+                backgroundColor: 'rgba(0, 158, 255, 0.6)',
+                borderWidth: 1
+            }
             ]
         },
         options: {
@@ -70,15 +77,10 @@ function verificarMortosCasos(valorSelecionado) {
             }
         }
     })
-
-})
-.catch(err => console.error(err));
-
-
 }
 
 function validarPesquisa() {
-    
+
     let valorSelecionado = select.value;
 
     if (valorSelecionado == '') {
@@ -89,7 +91,7 @@ function validarPesquisa() {
         valorSelecionado = select.value;
         resultado.innerHTML = '';
     }
-    
+
     verificarMortosCasos(valorSelecionado)
 
 }
