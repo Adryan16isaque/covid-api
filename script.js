@@ -5,7 +5,8 @@ const resultado = document.querySelector('#resultado')
 const resultadoMortes = document.querySelector('#resultadoMortes')
 const resultadoCasos = document.querySelector('#resultadoCasos')
 const ctx = document.getElementById('myChart');
-const ctx2 = document.getElementById('myChart2');
+const resultadoProporcao = document.querySelector('#resultadoProporcao')
+let tabela;
 
 
 verificarStatus()
@@ -36,9 +37,19 @@ function verificarMortosCasos(valorSelecionado) {
         .then(dados => {
             const mortos = dados.deaths
             const casos = dados.cases
+            
+            let proprocao= (mortos/casos).toFixed(2)
             resultadoMortes.innerHTML = `Mortes: ${mortos}`
             resultadoCasos.innerHTML = `Casos: ${casos}`
+            
+            resultadoProporcao.innerHTML =
+            `Taxa de mortalidade ${proprocao}% | 
+             Taxa de sobrevivencia ${100-proprocao}%`
             const estado = valorSelecionado
+
+            if(tabela){
+                tabela.destroy();
+            }
             criarTabela(estado,mortos,casos)
         })
         .catch(err => console.error(err));
@@ -62,9 +73,9 @@ function criarTabela(valorSelecionado,mortos,casos) {
                 backgroundColor: 'rgba(0, 158, 255, 0.6)',
                 borderWidth: 1
             }
-            ]
-        },
-        options: {
+        ]
+    },
+    options: {
             title: {
                 display: true,
                 fontSize: 20,
@@ -77,6 +88,7 @@ function criarTabela(valorSelecionado,mortos,casos) {
             }
         }
     })
+    console.log(tabela)
 }
 
 function validarPesquisa() {
