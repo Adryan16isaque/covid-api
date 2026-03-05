@@ -20,6 +20,7 @@
 
             <div class="container-conteudo">
                 <label for="uf" class="label-uf">Escolha o estado desejado</label>
+                
                 <div class="grupo-select">
                     <select name="uf" id="uf">
                         <option value="">Selecione uma UF</option>
@@ -56,13 +57,18 @@
                     <div id="resultado"></div>
                     <div id="resultadoMortes"></div>
                     <div id="resultadoCasos"></div>
-
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    
                 </div>
+
             </div>
 
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="script.js"></script>
 </body>
