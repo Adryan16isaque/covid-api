@@ -125,6 +125,7 @@ button {
     border-radius: 1.5rem;
 }
 footer{
+    text-align: center;
     background-color:#F5F7FA;
     border-top: 2px solid black;
     padding: 20px;
