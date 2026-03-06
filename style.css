@@ -30,8 +30,10 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #0081AF;
+    /* background-color: #0081AF; */
+    background-color: #0F172A;
     height: 100vh;
+    
 }
 
 header {
@@ -49,7 +51,10 @@ header {
     align-items: center;
     gap: 10px;
     padding: 15px;
-    
+}
+
+.container-conteudo label{
+    color: white;
 }
 
 .label-uf {
@@ -115,12 +120,12 @@ button {
 .resultadosClass {
     display: flex;
     flex-direction: row;
-    background-color: #00ABE7;
+    background-color:#93C5FD;
     border: 2px solid black;
     border-radius: 1.5rem;
 }
 footer{
-    background-color:#EAD2AC;
+    background-color:#F5F7FA;
     border-top: 2px solid black;
     padding: 20px;
     display: flex;

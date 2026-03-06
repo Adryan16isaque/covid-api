@@ -45,8 +45,8 @@ function verificarMortosCasos(valorSelecionado) {
             const casos = dados.cases
             
             let proprocao= (mortos/casos).toFixed(2)
-            resultadoMortes.innerHTML = `Mortes: ${mortos}`
             resultadoCasos.innerHTML = `Casos: ${casos}`
+            resultadoMortes.innerHTML = `Mortes: ${mortos}`
             
             resultadoProporcao.innerHTML =
             `Taxa de mortalidade ${proprocao}% <br> 
