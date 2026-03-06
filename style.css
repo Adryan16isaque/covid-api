@@ -13,14 +13,24 @@
 }
 
 #status {
-
     position: fixed;
     top: 0;
     right: 0;
-    padding: 10px;
-}
 
-html {
+    border: 2px solid black;
+    border-radius: 1rem;
+
+    font-weight: bold;
+    padding: 10px;
+    margin: 10px;
+
+    background-color: white;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #0081AF;
     height: 100vh;
 }
 
@@ -28,32 +38,91 @@ header {
     width: 100vw;
     text-align: center;
     border-bottom: 2px solid black;
-    margin-bottom: 20px;
     padding: 20px;
+    background-color: #3BB5D9;
 }
 
-.container-resultado {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-
-}
-
-.label-uf{
-    font-weight: bold;
-    font-size: 1.5rem;
-}
-.grupo-select{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.container-conteudo{
+.container-conteudo {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
     padding: 15px;
-    border: 1px solid black;
+    
+}
+
+.label-uf {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+#uf {
+    border-radius: 2rem;
+}
+
+.grupo-select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    border: 2px solid black;
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: #75BFCA;
+
+}
+
+.grupo-select select,
+button {
+    padding: 0.8rem;
+    border-radius: 1rem;
+    width: 15rem;
+}
+
+.casosEMortes {
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid black;
+
+    margin-right: 20px;
+    padding: 10px;
+    padding-right: 25px;
+    gap: 15px;
+
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.proporcao {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+    gap: 15px;
+
+    padding: 1.2rem;
+    font-weight: 600;
+}
+
+.myChart1 {
+    background-color: aliceblue;
+    border-radius: 1rem;
+}
+
+.resultadosClass {
+    display: flex;
+    flex-direction: row;
+    background-color: #00ABE7;
+    border: 2px solid black;
+    border-radius: 1.5rem;
+}
+footer{
+    background-color:#EAD2AC;
+    border-top: 2px solid black;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
 }

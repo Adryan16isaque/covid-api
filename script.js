@@ -1,13 +1,19 @@
 const select = document.querySelector('#uf')
+
 const btnBuscarMortesCasos = document.querySelector('#btnBuscarMortesCasos')
+
 const resultadoStatus = document.querySelector('#status')
 const resultado = document.querySelector('#resultado')
 const resultadoMortes = document.querySelector('#resultadoMortes')
 const resultadoCasos = document.querySelector('#resultadoCasos')
-const ctx = document.getElementById('myChart');
 const resultadoProporcao = document.querySelector('#resultadoProporcao')
-let tabela;
+const resultados = document.querySelector('.resultados')
 
+const casosMortes = document.querySelector('.casosMortes')
+
+const ctx = document.getElementById('myChart');
+
+let tabela;
 
 verificarStatus()
 function verificarStatus() {
@@ -43,7 +49,7 @@ function verificarMortosCasos(valorSelecionado) {
             resultadoCasos.innerHTML = `Casos: ${casos}`
             
             resultadoProporcao.innerHTML =
-            `Taxa de mortalidade ${proprocao}% | 
+            `Taxa de mortalidade ${proprocao}% <br> 
              Taxa de sobrevivencia ${100-proprocao}%`
             const estado = valorSelecionado
 
@@ -63,7 +69,7 @@ function criarTabela(valorSelecionado,mortos,casos) {
             labels: [`Casos de Covid em ${valorSelecionado}`],
             datasets: [{
                 label: ['Mortes'],
-                data: [mortos],
+                data: [mortos*5],
                 backgroundColor: 'rgba(255, 0, 0, 0.6)',
                 borderWidth: 1
             },
@@ -88,10 +94,12 @@ function criarTabela(valorSelecionado,mortos,casos) {
             }
         }
     })
-    console.log(tabela)
+    ctx.classList.add('myChart1')
 }
 
 function validarPesquisa() {
+    resultados.classList.add('resultadosClass')
+    casosMortes.classList.add('casosEMortes')
 
     let valorSelecionado = select.value;
 

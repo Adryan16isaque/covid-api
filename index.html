@@ -10,64 +10,72 @@
 
 <body>
     <div id="status"></div>
-    <div class="container">
 
-        <div class="container-resultado">
-            <header>
-                <h1>API - gráfico covid</h1>
+    <header>
+        <h1>API - gráfico covid</h1>
+    </header>
 
-            </header>
+    <div class="container-conteudo">
 
-            <div class="container-conteudo">
-                <label for="uf" class="label-uf">Escolha o estado desejado</label>
-                
-                <div class="grupo-select">
-                    <select name="uf" id="uf">
-                        <option value="">Selecione uma UF</option>
-                        <option value="SP">SP</option>
-                        <option value="MG">MG</option>
-                        <option value="RS">RS</option>
-                        <option value="PR">PR</option>
-                        <option value="RJ">RJ</option>
-                        <option value="SC">SC</option>
-                        <option value="GO">GO</option>
-                        <option value="BA">BA</option>
-                        <option value="CE">CE</option>
-                        <option value="ES">ES</option>
-                        <option value="PE">PE</option>
-                        <option value="DF">DF</option>
-                        <option value="MT">MT</option>
-                        <option value="PA">PA</option>
-                        <option value="PB">PB</option>
-                        <option value="AM">AM</option>
-                        <option value="MS">MS</option>
-                        <option value="RN">RN</option>
-                        <option value="MA">MA</option>
-                        <option value="RO">RO</option>
-                        <option value="PI">PI</option>
-                        <option value="TO">TO</option>
-                        <option value="SE">SE</option>
-                        <option value="AL">AL</option>
-                        <option value="AP">AP</option>
-                        <option value="RR">RR</option>
-                        <option value="AC">AC</option>
-                    </select>
+        <label for="uf" class="label-uf">Escolha um estado para pesquisa </label>
 
-                    <button id="btnBuscarMortesCasos">Buscar mortes e casos</button>
-                    <div id="resultado"></div>
+        <div class="grupo-select">
+
+            <select name="uf" id="uf">
+                <option value="">Selecione uma UF</option>
+                <option value="SP">SP</option>
+                <option value="MG">MG</option>
+                <option value="RS">RS</option>
+                <option value="PR">PR</option>
+                <option value="RJ">RJ</option>
+                <option value="SC">SC</option>
+                <option value="GO">GO</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="ES">ES</option>
+                <option value="PE">PE</option>
+                <option value="DF">DF</option>
+                <option value="MT">MT</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="AM">AM</option>
+                <option value="MS">MS</option>
+                <option value="RN">RN</option>
+                <option value="MA">MA</option>
+                <option value="RO">RO</option>
+                <option value="PI">PI</option>
+                <option value="TO">TO</option>
+                <option value="SE">SE</option>
+                <option value="AL">AL</option>
+                <option value="AP">AP</option>
+                <option value="RR">RR</option>
+                <option value="AC">AC</option>
+            </select>
+
+            <button id="btnBuscarMortesCasos">Buscar mortes e casos</button>
+            <div class="containerResultado">
+                <div id="resultado"></div>
+            </div>
+
+            <div class="resultados">
+                <div class="casosMortes">
                     <div id="resultadoMortes"></div>
                     <div id="resultadoCasos"></div>
-                    <div id="resultadoProporcao"></div>
-                    <div>
-                        <canvas id="myChart"></canvas>
-                    </div>
-                    
                 </div>
 
+                <div class="proporcao">
+                    <div id="resultadoProporcao"></div>
+                </div>
+            </div>
+            <div>
+                <canvas id="myChart"></canvas>
             </div>
 
         </div>
+
     </div>
+
+    <footer> © TODOS OS DIREITOS RESERVADOS A ISAQUE</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
